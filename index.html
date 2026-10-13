@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morn Sokunlyza, Frontend Developer</title>
+  <meta name="description" content="Portfolio of Morn Sokunlyza: frontend developer and UX/UI designer. Featured project: DigiCamFarm, an Android app concept for Cambodian farmers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #14301d;
+      --ink-soft: #3f5a48;
+      --paper: #f6f8f4;
+      --mist: #e3ede4;
+      --leaf: #6fbf8a;
+      --field: #1e7f34;
+      --gold: #e8a73a;
+      --line: #cfdcd1;
+      --gutter: clamp(16px, 5vw, 48px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #e9f1ea;
+        --ink-soft: #b4c7b9;
+        --paper: #0f1c14;
+        --mist: #172a1d;
+        --leaf: #6fbf8a;
+        --field: #5fc07a;
+        --line: #284232;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Hanken Grotesk", "Noto Sans Khmer", system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: "Bricolage Grotesque", "Noto Sans Khmer", system-ui, sans-serif;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+    p { margin: 0; }
+    a { color: var(--field); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 3px solid var(--field); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+
+    /* Header */
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; flex-wrap: wrap; }
+    .top .mark { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .top nav { display: flex; gap: 22px; }
+    .top nav a { color: var(--ink); text-decoration: none; font-weight: 500; padding-block: 6px; border-bottom: 2px solid transparent; }
+    .top nav a:hover { border-bottom-color: var(--gold); }
+
+    /* Hero */
+    .hero { display: grid; gap: 40px; padding-block: 28px 72px; align-items: center; }
+    @media (min-width: 880px) { .hero { grid-template-columns: 1.05fr 1fr; gap: 56px; padding-block: 48px 96px; } }
+    .hero h1 { font-size: clamp(2.6rem, 7vw, 4.75rem); font-weight: 700; }
+    .hero .role { font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; font-size: clamp(1.2rem, 2.4vw, 1.6rem); margin-top: 14px; color: var(--field); }
+    .hero .lede { margin-top: 20px; max-width: 46ch; color: var(--ink-soft); font-size: 1.15rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-block; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; min-height: 48px; }
+    .btn-primary { background: var(--field); color: #fff; }
+    .btn-primary:hover { background: #17692a; }
+    .btn-quiet { border: 2px solid var(--ink); color: var(--ink); }
+    .btn-quiet:hover { background: var(--mist); }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #0f1c14; } :root:not([data-theme="light"]) .btn-primary:hover { background: #7ad092; } }
+
+    /* The signature element: app screens fanned on a field-green stage */
+    .stage {
+      background: var(--mist);
+      border-radius: 36px;
+      padding: clamp(22px, 4vw, 40px) clamp(14px, 3vw, 32px);
+      display: flex; justify-content: center; align-items: flex-end;
+      border-bottom: 10px solid var(--gold);
+    }
+    .stage .shot { width: clamp(96px, 27vw, 176px); flex: none; }
+    .stage .shot:nth-child(1) { transform: translateY(-4px) rotate(-3deg); margin-right: -14px; }
+    .stage .shot:nth-child(2) { transform: translateY(-26px); z-index: 2; }
+    .stage .shot:nth-child(3) { transform: translateY(-4px) rotate(3deg); margin-left: -14px; }
+
+    /* Phone screen frames. If an image file is missing, the label shows instead. */
+    .shot {
+      position: relative;
+      aspect-ratio: 390 / 844;
+      border-radius: 12% / 5.5%;
+      overflow: hidden;
+      background: var(--paper);
+      border: 2px dashed var(--leaf);
+      box-shadow: 0 14px 30px -12px rgba(20, 70, 35, .45);
+      display: grid; place-items: center;
+      text-align: center; padding: 10px;
+      font-size: .8rem; color: var(--ink-soft);
+    }
+    .shot::before { content: attr(data-label); }
+    .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--paper); }
+    .shot:has(img) { border-style: solid; border-color: transparent; }
+
+    /* Sections */
+    section { padding-block: 72px; }
+    section + section { border-top: 1px solid var(--line); }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 700; }
+    .section-intro { margin-top: 16px; max-width: 62ch; color: var(--ink-soft); }
+
+    /* Case study */
+    .meta { display: grid; gap: 20px 32px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 36px 0 0; padding: 0; }
+    .meta div { border-top: 3px solid var(--gold); padding-top: 12px; }
+    .meta dt { font-size: .9rem; color: var(--ink-soft); }
+    .meta dd { margin: 4px 0 0; font-weight: 600; }
+
+    .features { margin-top: 56px; display: grid; gap: 0; }
+    .feature { display: grid; gap: 6px 40px; padding-block: 22px; border-top: 1px solid var(--line); }
+    @media (min-width: 760px) { .feature { grid-template-columns: 240px 1fr; } }
+    .feature h3 { font-size: 1.25rem; }
+    .feature p { color: var(--ink-soft); max-width: 62ch; }
+    .features .feature:last-child { border-bottom: 1px solid var(--line); }
+
+    h3.sub { font-size: 1.5rem; margin-top: 64px; }
+    .decisions { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; max-width: 70ch; }
+    .decisions li { padding-left: 22px; position: relative; color: var(--ink-soft); }
+    .decisions li::before { content: ""; position: absolute; left: 0; top: .7em; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+    .decisions strong { color: var(--ink); font-weight: 600; }
+
+    .status { margin-top: 40px; background: var(--mist); border-left: 6px solid var(--gold); border-radius: 14px; padding: 20px 24px; max-width: 70ch; }
+    .status strong { display: block; margin-bottom: 4px; }
+
+    /* Screen gallery */
+    .gallery { display: flex; gap: 20px; overflow-x: auto; padding: 8px 4px 22px; margin: 28px 0 0; list-style: none; scroll-snap-type: x proximity; }
+    .gallery li { flex: none; width: 186px; scroll-snap-align: start; }
+    .shot-btn { all: unset; display: block; width: 100%; cursor: zoom-in; border-radius: 12% / 5.5%; }
+    .shot-btn:focus-visible { outline: 3px solid var(--field); outline-offset: 4px; }
+    .gallery .cap { margin-top: 12px; font-size: .95rem; font-weight: 500; }
+
+    dialog { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 94vh; overflow: visible; }
+    dialog::backdrop { background: rgba(10, 30, 16, .78); }
+    .viewer { background: var(--paper); border-radius: 20px; padding: 18px; display: grid; gap: 12px; justify-items: center; }
+    .viewer img { max-height: 78vh; max-width: 100%; width: auto; border-radius: 22px; display: block; }
+    .viewer p { font-weight: 600; }
+    .viewer button { font: inherit; font-weight: 600; background: var(--field); color: #fff; border: 0; border-radius: 10px; padding: 10px 22px; min-height: 44px; cursor: pointer; }
+
+    /* Other work and skills */
+    .projects { display: grid; gap: 20px; margin-top: 36px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card { border: 2px solid var(--line); border-radius: 18px; padding: 24px; background: var(--paper); display: grid; gap: 10px; align-content: start; }
+    .card h3 { font-size: 1.3rem; }
+    .card p { color: var(--ink-soft); }
+    .card .tags { color: var(--ink); font-weight: 500; font-size: .95rem; }
+
+    .skills { display: grid; gap: 28px 40px; margin-top: 36px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .skills h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .skills ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills li { background: var(--mist); border-radius: 999px; padding: 6px 14px; font-weight: 500; font-size: .95rem; }
+
+    .about p + p { margin-top: 16px; }
+    .about .body { max-width: 62ch; margin-top: 24px; color: var(--ink-soft); }
+
+    .contact .big { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: clamp(1.4rem, 4.5vw, 2.4rem); overflow-wrap: anywhere; display: inline-block; margin-top: 22px; }
+    .contact .links { margin-top: 16px; display: flex; gap: 24px; flex-wrap: wrap; font-weight: 600; }
+
+    footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--ink-soft); font-size: .95rem; }
+  </style>
+</head>
+<body>
+
+  <header class="wrap top">
+    <a class="mark" href="#top" id="top">Morn Sokunlyza</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <h1>Morn Sokunlyza</h1>
+        <p class="role">Frontend developer</p>
+        <p class="lede">I'm a software development student with a UX/UI design background. I design interfaces in Figma and build them with HTML, CSS, JavaScript and Kotlin.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#work">See my work</a>
+          <a class="btn btn-quiet" href="mailto:lyza.cantwell@gmail.com">Email me</a>
+        </div>
+      </div>
+
+      <div class="stage" aria-label="Screens from the DigiCamFarm app design">
+        <div class="shot" data-label="home.png"><img src="images/home.png" alt="DigiCamFarm home screen with weather summary and quick access tiles" onerror="this.remove()"></div>
+        <div class="shot" data-label="weather.png"><img src="images/weather.png" alt="DigiCamFarm weather screen with an urgent rain advisory and a 7-day forecast" onerror="this.remove()"></div>
+        <div class="shot" data-label="market.png"><img src="images/market.png" alt="DigiCamFarm market screen with crop prices and category filters" onerror="this.remove()"></div>
+      </div>
+    </div>
+
+    <section id="work">
+      <div class="wrap">
+        <h2>DigiCamFarm</h2>
+        <p class="section-intro">An Android app concept that brings weather, crop prices, loan guidance and farm calculators into one place for Cambodian farmers. It is my graduation project.</p>
+
+        <dl class="meta">
+          <div><dt>Role</dt><dd>UI/UX design, Android development</dd></div>
+          <div><dt>Platform</dt><dd>Android</dd></div>
+          <div><dt>Tools</dt><dd>Figma, Kotlin</dd></div>
+          <div><dt>Status</dt><dd>Design approved, build starting</dd></div>
+        </dl>
+
+        <div class="features">
+          <div class="feature">
+            <h3>Weather</h3>
+            <p>Current conditions, an hourly forecast and a 7-day outlook. Urgent advisories, such as heavy rain this afternoon, sit at the top so a farmer can postpone work like fertilizing.</p>
+          </div>
+          <div class="feature">
+            <h3>Market prices</h3>
+            <p>Daily crop prices with weekly change and category filters for grains, vegetables and fruits. A banner explains price movements in plain language.</p>
+          </div>
+          <div class="feature">
+            <h3>Seller info</h3>
+            <p>Each crop shows its price trend, a 7-day high and low, and demand level, plus verified buyers nearby with a call button.</p>
+          </div>
+          <div class="feature">
+            <h3>Loan guidance</h3>
+            <p>Three short questions (farm size, loan purpose, amount) match a farmer with lenders that typically approve loans in their range.</p>
+          </div>
+          <div class="feature">
+            <h3>Cost and profit calculator</h3>
+            <p>Pick a crop, enter land, expected yield and costs, and see total cost, total revenue and projected net revenue before planting.</p>
+          </div>
+          <div class="feature">
+            <h3>Agriculture tips</h3>
+            <p>Short video guides filtered by topic, such as fertilizer timing and reducing post-harvest losses.</p>
+          </div>
+        </div>
+
+        <h3 class="sub">Design decisions</h3>
+        <ul class="decisions">
+          <li><strong>One navigation for every task.</strong> A five-tab bottom bar (Weather, Farm, Home, Loans, Market) keeps each main feature one tap away.</li>
+          <li><strong>Amber is for attention.</strong> Warnings and price alerts use amber against the green interface, so urgent information stands out.</li>
+          <li><strong>Consistent cards.</strong> Prices, buyers, loans and weather rows share one card pattern, so users learn it once.</li>
+          <li><strong>Large, clear controls.</strong> Big buttons and readable text keep the main actions easy to hit.</li>
+        </ul>
+
+        <div class="status">
+          <strong>Where the project is now</strong>
+          <p>The UI design has been approved and I'm starting the Kotlin implementation. All prices and names in the designs are sample data.</p>
+        </div>
+
+        <h3 class="sub">Screens</h3>
+        <p class="section-intro">Select a screen to view it larger.</p>
+        <ul class="gallery">
+          <li><button class="shot-btn" data-src="images/onboarding.png" data-cap="Onboarding"><span class="shot" data-label="onboarding.png"><img src="images/onboarding.png" alt="Onboarding screen with the headline Empower Your Farm" onerror="this.remove()"></span></button><p class="cap">Onboarding</p></li>
+          <li><button class="shot-btn" data-src="images/login.png" data-cap="Sign in"><span class="shot" data-label="login.png"><img src="images/login.png" alt="Sign in screen with email, password and social sign-in" onerror="this.remove()"></span></button><p class="cap">Sign in</p></li>
+          <li><button class="shot-btn" data-src="images/register.png" data-cap="Register"><span class="shot" data-label="register.png"><img src="images/register.png" alt="Register screen with name, email, phone and password fields" onerror="this.remove()"></span></button><p class="cap">Register</p></li>
+          <li><button class="shot-btn" data-src="images/home.png" data-cap="Home"><span class="shot" data-label="home.png"><img src="images/home.png" alt="Home screen with weather summary, quick access tiles and daily prices" onerror="this.remove()"></span></button><p class="cap">Home</p></li>
+          <li><button class="shot-btn" data-src="images/weather.png" data-cap="Weather"><span class="shot" data-label="weather.png"><img src="images/weather.png" alt="Weather screen with advisory, hourly forecast and 7-day outlook" onerror="this.remove()"></span></button><p class="cap">Weather</p></li>
+          <li><button class="shot-btn" data-src="images/market.png" data-cap="Market"><span class="shot" data-label="market.png"><img src="images/market.png" alt="Market screen with price banner, category filters and crop list" onerror="this.remove()"></span></button><p class="cap">Market</p></li>
+          <li><button class="shot-btn" data-src="images/seller.png" data-cap="Seller info"><span class="shot" data-label="seller.png"><img src="images/seller.png" alt="Corn detail screen with price trend and verified buyers nearby" onerror="this.remove()"></span></button><p class="cap">Seller info</p></li>
+          <li><button class="shot-btn" data-src="images/loans.png" data-cap="Loans"><span class="shot" data-label="loans.png"><img src="images/loans.png" alt="Loans screen with a match prompt and available loans" onerror="this.remove()"></span></button><p class="cap">Loans</p></li>
+          <li><button class="shot-btn" data-src="images/loan-questions.png" data-cap="Loan guidance questions"><span class="shot" data-label="loan-questions.png"><img src="images/loan-questions.png" alt="Loan guidance step asking about farm size" onerror="this.remove()"></span></button><p class="cap">Loan questions</p></li>
+          <li><button class="shot-btn" data-src="images/loan-match.png" data-cap="Loan matches"><span class="shot" data-label="loan-match.png"><img src="images/loan-match.png" alt="Loan matches screen listing lenders" onerror="this.remove()"></span></button><p class="cap">Loan matches</p></li>
+          <li><button class="shot-btn" data-src="images/calculator.png" data-cap="Cost and profit calculator"><span class="shot" data-label="calculator.png"><img src="images/calculator.png" alt="Cost and profit calculator for Jasmine rice with projected net revenue" onerror="this.remove()"></span></button><p class="cap">Cost and profit</p></li>
+          <li><button class="shot-btn" data-src="images/tips.png" data-cap="Agriculture tips"><span class="shot" data-label="tips.png"><img src="images/tips.png" alt="Agriculture tips screen with topic filters and video guides" onerror="this.remove()"></span></button><p class="cap">Agriculture tips</p></li>
+          <li><button class="shot-btn" data-src="images/profile.png" data-cap="Profile"><span class="shot" data-label="profile.png"><img src="images/profile.png" alt="Profile screen with activity and preferences" onerror="this.remove()"></span></button><p class="cap">Profile</p></li>
+        </ul>
+
+        <dialog id="viewer" aria-label="Screen preview">
+          <div class="viewer">
+            <img id="viewer-img" alt="">
+            <p id="viewer-cap"></p>
+            <button type="button" id="viewer-close">Close</button>
+          </div>
+        </dialog>
+      </div>
+    </section>
+
+    <section id="more">
+      <div class="wrap">
+        <h2>Other projects</h2>
+        <p class="section-intro">Coursework and smaller builds. The code for each is on GitHub.</p>
+        <div class="projects">
+          <article class="card">
+            <h3>Book selling system</h3>
+            <p>A web application for selling books, built with Laravel as a school project.</p>
+            <p class="tags">Laravel, PHP</p>
+            <a href="https://github.com/liz1305">View on GitHub</a>
+          </article>
+          <article class="card">
+            <h3>More on GitHub</h3>
+            <p>Smaller projects from my five terms of study, in web and Python.</p>
+            <a href="https://github.com/liz1305">github.com/liz1305</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div>
+            <h3>Frontend</h3>
+            <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          </div>
+          <div>
+            <h3>Mobile</h3>
+            <ul><li>Kotlin</li><li>Android</li></ul>
+          </div>
+          <div>
+            <h3>Design</h3>
+            <ul><li>Figma</li><li>UX/UI design</li></ul>
+          </div>
+          <div>
+            <h3>Also used in coursework</h3>
+            <ul><li>Python</li><li>Django</li><li>Laravel</li><li>C#</li><li>C++</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="wrap">
+        <h2>About</h2>
+        <div class="body">
+          <p>I studied software development for five terms, working in Python, JavaScript, HTML, CSS, C#, C++ and Kotlin, with some Django along the way. I also completed a short course in UX/UI design.</p>
+          <p>I enjoy frontend work because it's where design and code meet. I like turning a Figma screen into something people can tap, and thinking about how a real person will use it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p class="section-intro">I'm looking for a frontend role. Email me and I'll reply.</p>
+        <a class="big" href="mailto:lyza.cantwell@gmail.com">lyza.cantwell@gmail.com</a>
+        <div class="links">
+          <a href="https://github.com/liz1305">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">&copy; 2026 Morn Sokunlyza</div>
+  </footer>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('viewer');
+      var img = document.getElementById('viewer-img');
+      var cap = document.getElementById('viewer-cap');
+      if (!dlg || typeof dlg.showModal !== 'function') return;
+
+      document.querySelectorAll('.shot-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var src = btn.getAttribute('data-src');
+          var label = btn.getAttribute('data-cap') || '';
+          var thumb = btn.querySelector('img');
+          cap.textContent = label;
+          img.alt = thumb ? thumb.alt : label;
+          if (thumb) { img.src = src; img.style.display = 'block'; }
+          else { img.removeAttribute('src'); img.style.display = 'none'; }
+          dlg.showModal();
+        });
+      });
+
+      document.getElementById('viewer-close').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    })();
+  </script>
+</body>
+</html>
