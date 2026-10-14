@@ -6,7 +6,7 @@
   <title>Morn Sokunlyza, Frontend Developer</title>
   <meta name="description" content="Portfolio of Morn Sokunlyza: frontend developer and UX/UI designer. Featured project: DigiCamFarm, an Android app concept for Cambodian farmers.">
 
-  <!-- Link preview when you share the site (LinkedIn, Telegram, email) -->
+  <!-- Link preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Morn Sokunlyza, Frontend Developer">
   <meta property="og:description" content="Frontend developer and UX/UI designer. See my DigiCamFarm app design and code.">
@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Colors: change them here and the whole site follows ---------- */
+    /* Colors*/
     :root {
       --ink: #14301d;
       --ink-soft: #3f5a48;
@@ -29,7 +29,7 @@
       --field: #1e7f34;
       --gold: #e8a73a;
       --line: #cfdcd1;
-      --deep: #0e3b21;      /* the dark green bands */
+      --deep: #0e3b21;     
       --on-deep: #ffffff;
       --gutter: clamp(16px, 5vw, 48px);
     }
@@ -71,7 +71,7 @@
 
     .wrap { max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
 
-    /* ---------- Buttons ---------- */
+    /*Buttons*/
     .btn { display: inline-block; padding: 14px 26px; border-radius: 14px; font-weight: 600; text-decoration: none; min-height: 48px; transition: transform .15s ease, background .15s ease; }
     .btn:hover { transform: translateY(-2px); text-decoration: none; }
     .btn-gold { background: var(--gold); color: #1b2a12; }
@@ -82,15 +82,14 @@
     .btn-green:hover { background: #17692a; }
     @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-green { color: #0f1c14; } }
 
-    /* ---------- Hero band ---------- */
+    /* Hero band */
     .hero-band {
       background-color: var(--deep);
-      /* faint crop rows, like a field seen from above */
       background-image: repeating-linear-gradient(115deg, transparent 0 34px, rgba(111,191,138,.10) 34px 36px);
       color: var(--on-deep);
       position: relative;
     }
-    .hero-band::after {            /* the horizon: a green hill meeting the page */
+    .hero-band::after {            
       content: "";
       display: block;
       height: clamp(40px, 7vw, 96px);
@@ -112,7 +111,7 @@
     .hero .lede { margin-top: 18px; max-width: 46ch; color: rgba(255,255,255,.85); font-size: 1.15rem; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
-    /* App screens fanned out; they overhang the hill */
+    /* app screens */
     .stage {
       display: flex; justify-content: center; align-items: flex-end;
       position: relative; z-index: 2;
@@ -123,7 +122,7 @@
     .stage .shot:nth-child(2) { --r: 0deg;  --y: -22px; z-index: 2; }
     .stage .shot:nth-child(3) { --r: 4deg;  --y: 10px;  margin-left: -18px; }
     .stage .shot { transform: translateY(var(--y)) rotate(var(--r)); }
-    /* the one moment of motion: the screens rise into place on load */
+    /* motion */
     @media (prefers-reduced-motion: no-preference) {
       .stage .shot { animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
       .stage .shot:nth-child(2) { animation-delay: .12s; }
@@ -134,7 +133,7 @@
       }
     }
 
-    /* ---------- Phone screen frames (a missing image shows its file name) ---------- */
+    /* Phone screen frames */
     .shot {
       position: relative;
       aspect-ratio: 390 / 844;
@@ -152,7 +151,7 @@
     .shot:has(img)::before { display: none; }
     .shot img { display: block; width: 100%; height: auto; }
 
-    /* ---------- Sections ---------- */
+    /* Sections  */
     section { padding-block: 80px; }
     #work { padding-top: 110px; }
     h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; }
@@ -165,7 +164,7 @@
     .meta dt { font-size: .9rem; color: var(--ink-soft); }
     .meta dd { margin: 4px 0 0; font-weight: 600; }
 
-    /* Feature rows: each one shows its own screen */
+    /* Feature rows */
     .showcase { margin-top: 64px; display: grid; gap: 56px; }
     .show { display: grid; gap: 22px; align-items: center; }
     @media (min-width: 800px) {
@@ -179,7 +178,7 @@
       border-radius: 32px;
       padding: 32px 20px 0;
       display: flex; justify-content: center; align-items: flex-start; gap: 18px;
-      height: 440px; overflow: hidden;      /* the phone peeks up from the bottom */
+      height: 440px; overflow: hidden;     
     }
     .show-stage .shot { width: clamp(150px, 50vw, 210px); flex: none; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
     .show-stage.pair .shot { width: clamp(120px, 38vw, 170px); }
@@ -218,7 +217,7 @@
     .card p { color: var(--ink-soft); }
     .card .tags { color: var(--ink); font-weight: 600; font-size: .95rem; }
 
-    /* Book selling system: wide card with browser-framed screenshots */
+    /* Book selling system browser-framed  */
     .card-wide { grid-column: 1 / -1; gap: 22px; }
     .card-wide:hover { transform: none; }
     .card-wide .copy { display: grid; gap: 10px; max-width: 64ch; }
@@ -236,7 +235,7 @@
     .browser .view:has(img)::before { display: none; }
     .browser .view img { display: block; width: 100%; height: auto; }
 
-    /* StudyBloom: feature points + a row of phone screens */
+    /* StudyBloom feature points, row of phone screens */
     .points { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
     .points li { padding-left: 22px; position: relative; color: var(--ink-soft); }
     .points li::before { content: ""; position: absolute; left: 0; top: .7em; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
@@ -425,15 +424,15 @@
             <ul class="browsers">
               <li>
                 <button class="shot-btn" data-src="images/genirus-home.png" data-cap="GenIrus home page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-home.png"><img src="images/genirus-home.png" alt="GenIrus bookstore home page with the headline Your Cozy Corner for Timeless Stories" onerror="this.remove()"></span></span></button>
-                <p class="cap">Home page</p>
+                <p class="cap">Home Page</p>
               </li>
               <li>
                 <button class="shot-btn" data-src="images/genirus-about.png" data-cap="GenIrus about page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-about.png"><img src="images/genirus-about.png" alt="GenIrus bookstore about page with the store story and an illustration of a person holding a stack of books" onerror="this.remove()"></span></span></button>
-                <p class="cap">About page</p>
+                <p class="cap">About Page</p>
               </li>
               <li>
                 <button class="shot-btn" data-src="images/genirus-team.png" data-cap="GenIrus team page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-team.png"><img src="images/genirus-team.png" alt="GenIrus bookstore Meet Our Team page with four team member cards" onerror="this.remove()"></span></span></button>
-                <p class="cap">Team page</p>
+                <p class="cap">Team Page  </p>
               </li>
             </ul>
           </article>
