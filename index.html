@@ -218,6 +218,32 @@
     .card p { color: var(--ink-soft); }
     .card .tags { color: var(--ink); font-weight: 600; font-size: .95rem; }
 
+    /* Book selling system: wide card with browser-framed screenshots */
+    .card-wide { grid-column: 1 / -1; gap: 22px; }
+    .card-wide:hover { transform: none; }
+    .card-wide .copy { display: grid; gap: 10px; max-width: 64ch; }
+    .card-wide .note { font-size: .9rem; }
+    .browsers { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+    @media (min-width: 800px) { .browsers { grid-template-columns: repeat(3, 1fr); } }
+    .browsers .shot-btn { border-radius: 14px; }
+    .browsers .cap { margin-top: 10px; font-size: .95rem; font-weight: 500; color: var(--ink); }
+    .browser { display: block; border: 2px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--paper); }
+    .browser .bar { display: flex; gap: 6px; padding: 9px 12px; background: var(--mist); }
+    .browser .bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+    .browser .view { display: grid; place-items: center; aspect-ratio: 1890 / 905; color: var(--ink-soft); font-size: .8rem; text-align: center; padding: 10px; }
+    .browser .view::before { content: attr(data-label); }
+    .browser .view:has(img) { display: block; padding: 0; aspect-ratio: auto; }
+    .browser .view:has(img)::before { display: none; }
+    .browser .view img { display: block; width: 100%; height: auto; }
+
+    /* StudyBloom: feature points + a row of phone screens */
+    .points { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .points li { padding-left: 22px; position: relative; color: var(--ink-soft); }
+    .points li::before { content: ""; position: absolute; left: 0; top: .7em; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
+    .phones { list-style: none; margin: 0; padding: 4px 4px 14px; display: flex; gap: 16px; overflow-x: auto; align-items: flex-start; }
+    .phones li { flex: none; width: 144px; }
+    .phones .cap { margin-top: 10px; font-size: .95rem; font-weight: 500; color: var(--ink); }
+
     .skills { display: grid; gap: 28px 40px; margin-top: 36px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
     .skills h3 { font-size: 1.1rem; margin-bottom: 10px; }
     .skills ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -388,11 +414,52 @@
         <h2>Other projects</h2>
         <p class="section-intro">Coursework and smaller builds. The code for each is on GitHub.</p>
         <div class="projects">
-          <article class="card">
-            <h3>Book selling system</h3>
-            <p>A web application for selling books, built with Laravel as a school project.</p>
-            <p class="tags">Laravel, PHP</p>
-            <a href="https://github.com/liz1305">View on GitHub</a>
+          <article class="card card-wide">
+            <div class="copy">
+              <h3>Book selling system: GenIrus</h3>
+              <p>An online bookstore website built with Laravel as a school project. Full-stack PHP web application for bookstore inventory, user role management, and sales transactions.</p>
+              <p class="tags">Laravel, PHP</p>
+              <p class="note">The store details, numbers and team members shown are sample content.</p>
+              <a href="https://github.com/liz1305">View on GitHub</a>
+            </div>
+            <ul class="browsers">
+              <li>
+                <button class="shot-btn" data-src="images/genirus-home.png" data-cap="GenIrus home page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-home.png"><img src="images/genirus-home.png" alt="GenIrus bookstore home page with the headline Your Cozy Corner for Timeless Stories" onerror="this.remove()"></span></span></button>
+                <p class="cap">Home page</p>
+              </li>
+              <li>
+                <button class="shot-btn" data-src="images/genirus-about.png" data-cap="GenIrus about page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-about.png"><img src="images/genirus-about.png" alt="GenIrus bookstore about page with the store story and an illustration of a person holding a stack of books" onerror="this.remove()"></span></span></button>
+                <p class="cap">About page</p>
+              </li>
+              <li>
+                <button class="shot-btn" data-src="images/genirus-team.png" data-cap="GenIrus team page"><span class="browser"><span class="bar"><i></i><i></i><i></i></span><span class="view" data-label="genirus-team.png"><img src="images/genirus-team.png" alt="GenIrus bookstore Meet Our Team page with four team member cards" onerror="this.remove()"></span></span></button>
+                <p class="cap">Team page</p>
+              </li>
+            </ul>
+          </article>
+          <article class="card card-wide">
+            <div class="copy">
+              <h3>StudyBloom</h3>
+              <p>A study habit tracker for students, built with React Native and Expo as a group school project.</p>
+              <ul class="points">
+                <li>Custom focus timers with adjustable Pomodoro cycles</li>
+                <li>Session history you can search by subject and filter by done or quit</li>
+                <li>Analytics with discipline, stability and deep work scores, plus a weekly report</li>
+              </ul>
+              <p class="tags">React Native, Expo, JavaScript, Async Storage, Context API</p>
+              <p class="note">Group project. The screens show a new account, so the numbers are still zero.</p>
+              <!-- To show a GitHub link, remove this comment marker and paste the repo link:
+              <a href="PASTE-YOUR-REPO-LINK-HERE">View on GitHub</a>
+              -->
+            </div>
+            <ul class="phones">
+              <li><button class="shot-btn" data-src="images/studybloom-home.PNG" data-cap="StudyBloom home"><span class="shot" data-label="studybloom-home.jpg"><img src="images/studybloom-home.PNG" alt="StudyBloom home screen with today's study time, sessions, done rate, streak and today's plan" onerror="this.remove()"></span></button><p class="cap">Home</p></li>
+              <li><button class="shot-btn" data-src="images/studybloom-stats.PNG" data-cap="StudyBloom analytics"><span class="shot" data-label="studybloom-stats.jpg"><img src="images/studybloom-stats.PNG" alt="StudyBloom analytics screen with discipline, stability and deep work scores" onerror="this.remove()"></span></button><p class="cap">Analytics</p></li>
+              <li><button class="shot-btn" data-src="images/studybloom-history.PNG" data-cap="StudyBloom history"><span class="shot" data-label="studybloom-history.jpg"><img src="images/studybloom-history.PNG" alt="StudyBloom history screen with search by subject and done or quit filters" onerror="this.remove()"></span></button><p class="cap">History</p></li>
+              <li><button class="shot-btn" data-src="images/studybloom-report.PNG" data-cap="StudyBloom weekly report"><span class="shot" data-label="studybloom-report.jpg"><img src="images/studybloom-report.PNG" alt="StudyBloom weekly report screen that unlocks after more study sessions" onerror="this.remove()"></span></button><p class="cap">Weekly report</p></li>
+              <li><button class="shot-btn" data-src="images/studybloom-signin.PNG" data-cap="StudyBloom sign in"><span class="shot" data-label="studybloom-signin.jpg"><img src="images/studybloom-signin.PNG" alt="StudyBloom sign in screen" onerror="this.remove()"></span></button><p class="cap">Sign in</p></li>
+              <li><button class="shot-btn" data-src="images/studybloom-signup.PNG" data-cap="StudyBloom create account"><span class="shot" data-label="studybloom-signup.jpg"><img src="images/studybloom-signup.PNG" alt="StudyBloom create account screen" onerror="this.remove()"></span></button><p class="cap">Create account</p></li>
+            </ul>
           </article>
           <article class="card">
             <h3>More on GitHub</h3>
@@ -444,6 +511,7 @@
         <a class="big" href="mailto:lyza.cantwell@gmail.com">lyza.cantwell@gmail.com</a>
         <div class="actions">
           <a class="btn btn-gold" href="mailto:lyza.cantwell@gmail.com">Send an email</a>
+          <a class="btn btn-line" href="https://t.me/ZA_ARELA">Telegram</a>
           <a class="btn btn-line" href="https://github.com/liz1305">GitHub</a>
         </div>
       </div>
