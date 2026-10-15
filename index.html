@@ -29,7 +29,7 @@
       --field: #1e7f34;
       --gold: #e8a73a;
       --line: #cfdcd1;
-      --deep: #0e3b21;     
+      --deep: #0a2a17;     
       --on-deep: #ffffff;
       --gutter: clamp(16px, 5vw, 48px);
     }
@@ -203,7 +203,7 @@
 
     dialog { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 94vh; overflow: visible; }
     dialog::backdrop { background: rgba(10, 30, 16, .8); }
-    .viewer { background: var(--paper); border-radius: 20px; padding: 18px; display: grid; gap: 12px; justify-items: center; }
+        .viewer { background: var(--paper); color: var(--ink); border-radius: 20px; padding: 18px; display: grid; gap: 12px; justify-items: center; }
     .viewer img { max-height: 78vh; max-width: 100%; width: auto; border-radius: 22px; display: block; }
     .viewer p { font-weight: 600; }
     .viewer button { font: inherit; font-weight: 600; background: var(--field); color: #fff; border: 0; border-radius: 10px; padding: 10px 22px; min-height: 44px; cursor: pointer; }
@@ -256,7 +256,7 @@
     .cert + .cert { margin-top: 20px; }
     .cert .shot-btn { border-radius: 8px; }
     .cert img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--line); }
-    .cert h3 { font-size: 1.3rem; }
+    .cert h3 { font-size: 1.3rem; color: #316d44; }
     .cert p { color: var(--ink-soft); margin-top: 6px; }
     .cert .meta { font-weight: 600; color: var(--ink); }
     @media (max-width: 640px) { .cert { grid-template-columns: 1fr; } }
@@ -482,7 +482,7 @@
         <h2>Certificates</h2>
 
         <div class="cert">
-          <button class="shot-btn" data-src="images/it-essentials-certificate.pdf" data-cap="IT Essentials: PC Hardware and Software, Cisco Networking Academy"><img src="images/it-essentials-certificate.png" alt="Cisco Networking Academy certificate for IT Essentials: PC Hardware and Software" onerror="this.remove()"></button>
+          <button class="shot-btn" data-src="images/it-essentials-certificate.png" data-cap="IT Essentials: PC Hardware and Software, Cisco Networking Academy"><img src="images/it-essentials-certificate.png" alt="Cisco Networking Academy certificate for IT Essentials: PC Hardware and Software" onerror="this.remove()"></button>
           <div>
             <h3>IT Essentials: PC Hardware and Software</h3>
             <p class="meta">Cisco Networking Academy · Completed 30 Jul 2024</p>
@@ -491,7 +491,7 @@
         </div>
 
         <div class="cert">
-          <button class="shot-btn" data-src="images/learn-a-thon-certificate.pdf" data-cap="Learn-A-Thon 2025 award, Cisco Networking Academy"><img src="images/learn-a-thon-certificate.png" alt="Cisco Networking Academy Learn-A-Thon 2025 learner achievement award" onerror="this.remove()"></button>
+          <button class="shot-btn" data-src="images/learn-a-thon-certificate.png" data-cap="Learn-A-Thon 2025 award, Cisco Networking Academy"><img src="images/learn-a-thon-certificate.png" alt="Cisco Networking Academy Learn-A-Thon 2025 learner achievement award" onerror="this.remove()"></button>
           <div>
             <h3>Learn-A-Thon 2025 · Learner Achievement Award</h3>
             <p class="meta">Cisco Networking Academy · 24 Oct 2025</p>
