@@ -251,6 +251,16 @@
     .about .body { max-width: 62ch; margin-top: 24px; color: var(--ink-soft); font-size: 1.15rem; }
     .about p + p { margin-top: 16px; }
 
+    /* Certificates */
+    .cert { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 28px; align-items: center; margin-top: 36px; border: 2px solid var(--line); border-radius: 20px; padding: 22px; background: var(--paper); }
+    .cert + .cert { margin-top: 20px; }
+    .cert .shot-btn { border-radius: 8px; }
+    .cert img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--line); }
+    .cert h3 { font-size: 1.3rem; }
+    .cert p { color: var(--ink-soft); margin-top: 6px; }
+    .cert .meta { font-weight: 600; color: var(--ink); }
+    @media (max-width: 640px) { .cert { grid-template-columns: 1fr; } }
+
     /* Contact band */
     .contact-band {
       background-color: var(--deep);
@@ -464,6 +474,31 @@
             <a href="https://github.com/liz1305">github.com/liz1305</a>
           </article>
         </div>
+      </div>
+    </section>
+
+        <section id="certificates">
+      <div class="wrap">
+        <h2>Certificates</h2>
+
+        <div class="cert">
+          <button class="shot-btn" data-src="images/it-essentials-certificate.pdf" data-cap="IT Essentials: PC Hardware and Software, Cisco Networking Academy"><img src="images/it-essentials-certificate.png" alt="Cisco Networking Academy certificate for IT Essentials: PC Hardware and Software" onerror="this.remove()"></button>
+          <div>
+            <h3>IT Essentials: PC Hardware and Software</h3>
+            <p class="meta">Cisco Networking Academy · Completed 30 Jul 2024</p>
+            <p>Covers how computers are built, set up and fixed, plus the basics of networks, operating systems and security. Tap the certificate to view it larger.</p>
+          </div>
+        </div>
+
+        <div class="cert">
+          <button class="shot-btn" data-src="images/learn-a-thon-certificate.pdf" data-cap="Learn-A-Thon 2025 award, Cisco Networking Academy"><img src="images/learn-a-thon-certificate.png" alt="Cisco Networking Academy Learn-A-Thon 2025 learner achievement award" onerror="this.remove()"></button>
+          <div>
+            <h3>Learn-A-Thon 2025 · Learner Achievement Award</h3>
+            <p class="meta">Cisco Networking Academy · 24 Oct 2025</p>
+            <p>Awarded in recognition of exceptional learning achievement within the Cisco Networking Academy program.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
