@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
 
+  <script>document.documentElement.classList.add("js");</script>
   <style>
     /* Colors*/
     :root {
@@ -46,7 +47,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-padding-top: 24px; }
+    html { scroll-padding-top: 90px; }
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
     body {
@@ -81,6 +82,42 @@
     .btn-green { background: var(--field); color: #fff; }
     .btn-green:hover { background: #17692a; }
     @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-green { color: #0f1c14; } }
+
+
+    /* Motion */
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* Sticky navigation bar */
+    .topbar-slot { min-height: 72px; }
+    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background-color .25s ease, box-shadow .25s ease; }
+    .topbar .top { transition: padding .25s ease; }
+    .topbar.stuck { background: var(--deep); box-shadow: 0 6px 24px -10px rgba(0, 0, 0, .55); }
+    .topbar.stuck .top { padding-block: 12px; }
+
+    /* Typing effect in the hero */
+    .hero .role { min-height: 1.6em; }
+    .caret { display: none; width: 2px; height: 1em; background: var(--gold); margin-left: 4px; vertical-align: -0.12em; }
+    .js .caret { display: inline-block; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Hero phones drift slightly while scrolling */
+    .stage { transform: translateY(var(--py, 0px)); will-change: transform; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      /* Scroll reveal */
+      .js .reveal { opacity: 0; }
+      .js .reveal.in { animation: fadeUp .7s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: var(--d, 0ms); opacity: 1; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+      /* Skill tags pop in one after another */
+      .js .skills > div:not(.pop) li { opacity: 0; }
+      .skills > div.pop li { animation: pop .45s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--i, 0) * 70ms + 150ms); }
+      @keyframes pop { from { opacity: 0; transform: scale(.7) translateY(8px); } to { opacity: 1; transform: none; } }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .caret { animation: none; }
+      .stage { transform: none; }
+    }
 
     /* Hero band */
     .hero-band {
@@ -217,6 +254,14 @@
     .card p { color: var(--ink-soft); }
     .card .tags { color: var(--ink); font-weight: 600; font-size: .95rem; }
 
+    /* Education */
+    .edu { margin-top: 36px; border: 2px solid var(--line); border-radius: 20px; padding: 26px; background: var(--paper); display: grid; gap: 14px; }
+    .edu h3 { font-size: 1.3rem; margin: 0; }
+    .edu .meta { display: block; margin: 0; font-weight: 600; color: var(--ink); }
+    .edu p { color: var(--ink-soft); }
+    .edu ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+    .edu li { background: var(--mist); border: 2px solid var(--line); border-radius: 999px; padding: 6px 16px; font-weight: 600; font-size: .95rem; }
+
     /* Book selling system browser-framed  */
     .card-wide { grid-column: 1 / -1; gap: 22px; }
     .card-wide:hover { transform: none; }
@@ -256,9 +301,10 @@
     .cert + .cert { margin-top: 20px; }
     .cert .shot-btn { border-radius: 8px; }
     .cert img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--line); }
-    .cert h3 { font-size: 1.3rem; color: #316d44; }
+    .cert h3 { font-size: 1.3rem; color: var(--field); }
     .cert p { color: var(--ink-soft); margin-top: 6px; }
-    .cert .meta { font-weight: 600; color: var(--ink); }
+    .cert .meta { display: block; margin: 6px 0 0; font-weight: 600; color: var(--ink); }
+    .cert .verify { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 640px) { .cert { grid-template-columns: 1fr; } }
 
     /* Contact band */
@@ -277,20 +323,24 @@
 <body>
 
   <div class="hero-band">
-    <header class="wrap top">
-      <a class="mark" href="#top" id="top">Morn Sokunlyza</a>
-      <nav aria-label="Main">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div class="topbar-slot" id="topbar-slot">
+      <div class="topbar" id="topbar">
+        <header class="wrap top">
+          <a class="mark" href="#top" id="top">Morn Sokunlyza</a>
+          <nav aria-label="Main">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </header>
+      </div>
+    </div>
 
     <div class="wrap hero">
       <div>
         <p class="badge">Open to Frontend Developer roles</p>
         <h1>Morn Sokunlyza</h1>
-        <p class="role">Frontend Developer</p>
+        <p class="role"><span class="sr">Frontend Developer and UX/UI Designer</span><span id="typed" aria-hidden="true">Frontend Developer</span><span class="caret" aria-hidden="true"></span></p>
         <p class="lede">I'm a Software Development student with a UX/UI design background. I design interfaces in Figma and build them with HTML, CSS, JavaScript and Kotlin.</p>
         <div class="actions">
           <a class="btn btn-gold" href="#work">See my work</a>
@@ -477,7 +527,7 @@
       </div>
     </section>
 
-        <section id="certificates">
+    <section id="certificates">
       <div class="wrap">
         <h2>Certificates</h2>
 
@@ -503,13 +553,29 @@
       </div>
     </section>
 
+    <section id="education">
+      <div class="wrap">
+        <h2>Education</h2>
+        <div class="edu">
+          <div>
+            <h3>Software Development, IT Academy STEP Cambodia</h3>
+            <p class="meta">February 2024 to present · 5 terms completed</p>
+          </div>
+          <p>A hands-on program with projects in every term, including team projects. Coursework covers:</p>
+          <ul>
+            <li>HTML &amp; CSS</li><li>JavaScript</li><li>React Native</li><li>Python</li><li>PHP</li><li>ASP.NET Core</li><li>C# &amp; C++</li><li>Android (Kotlin)</li><li>AWS cloud basics</li><li>Project management</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="skills">
       <div class="wrap">
         <h2>Skills</h2>
         <div class="skills">
           <div>
             <h3>Frontend</h3>
-            <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li></ul>
+            <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React Native</li></ul>
           </div>
           <div>
             <h3>Mobile</h3>
@@ -521,7 +587,7 @@
           </div>
           <div>
             <h3>Also used in coursework</h3>
-            <ul><li>Python</li><li>Django</li><li>Laravel</li><li>C#</li><li>C++</li></ul>
+            <ul><li>Python</li><li>Django</li><li>PHP</li><li>Laravel</li><li>ASP.NET Core</li><li>C#</li><li>C++</li><li>AWS basics</li></ul>
           </div>
         </div>
       </div>
@@ -532,7 +598,7 @@
         <h2>About</h2>
         <div class="body">
           <p>I studied software development for 2.5 years at IT Step Academy, working in Python, JavaScript, HTML, CSS, React Native, C#, C++ and Kotlin, with some Django and Laravel along the way. 
-             I also completed Cisco`s IT Essentials course, so I understand how computers and networks work behind the apps I build and also completed a short course in UX/UI design.</p>
+             I also completed Cisco's IT Essentials course, so I understand how computers and networks work behind the apps I build and also completed a short course in UX/UI design.</p>
           <p>I'm drawn to frontend work because it's where design and code meet. I like turning a screen design into something people can tap and use, and thinking about how a real person will use it.</p>
         </div>
       </div>
@@ -578,6 +644,85 @@
 
       document.getElementById('viewer-close').addEventListener('click', function () { dlg.close(); });
       dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Sticky bar: slot keeps the space, bar turns solid after scrolling */
+      var bar = document.getElementById('topbar');
+      var slot = document.getElementById('topbar-slot');
+      function sizeSlot() { if (bar && slot) slot.style.minHeight = bar.offsetHeight + 'px'; }
+      sizeSlot();
+      window.addEventListener('resize', function () { bar.classList.remove('stuck'); sizeSlot(); onScroll(); });
+
+      /* Parallax drift for hero phones + bar state */
+      var stage = document.querySelector('.stage');
+      var ticking = false;
+      function onScroll() {
+        var y = window.scrollY || 0;
+        if (bar) bar.classList.toggle('stuck', y > 40);
+        if (stage && !reduce) stage.style.setProperty('--py', Math.min(y * 0.1, 50) + 'px');
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+      }, { passive: true });
+      onScroll();
+
+      /* Typing effect */
+      var typed = document.getElementById('typed');
+      if (typed && !reduce) {
+        var words = ['Frontend Developer', 'UX/UI Designer', 'Mobile App Builder'];
+        var w = 0, i = 0, deleting = false;
+        typed.textContent = '';
+        (function tick() {
+          var word = words[w];
+          if (!deleting) {
+            i++; typed.textContent = word.slice(0, i);
+            if (i === word.length) { deleting = true; return setTimeout(tick, 1800); }
+            return setTimeout(tick, 85);
+          }
+          i--; typed.textContent = word.slice(0, i);
+          if (i === 0) { deleting = false; w = (w + 1) % words.length; return setTimeout(tick, 350); }
+          setTimeout(tick, 45);
+        })();
+      }
+
+      /* Scroll reveal + skill tags */
+      document.querySelectorAll('.skills > div').forEach(function (d) {
+        d.querySelectorAll('li').forEach(function (li, n) { li.style.setProperty('--i', n); });
+      });
+      if (reduce || !('IntersectionObserver' in window)) {
+        document.querySelectorAll('.skills > div').forEach(function (d) { d.classList.add('pop'); });
+        return;
+      }
+      var targets = document.querySelectorAll('main h2, .project-head, dl.meta, .show, h3.sub, .decisions, .status, .gallery, .projects > .card, .cert, .edu, .skills > div, .about .body, #contact .wrap > *:not(h2)');
+      var staggered = '.skills > div, .projects > .card, .cert';
+      targets.forEach(function (el) {
+        el.classList.add('reveal');
+        if (el.matches(staggered)) {
+          var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.matches(staggered); });
+          el.style.setProperty('--d', Math.min(sibs.indexOf(el), 3) * 90 + 'ms');
+        }
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          io.unobserve(el);
+          el.classList.add('in');
+          if (el.matches('.skills > div')) el.classList.add('pop');
+          el.addEventListener('animationend', function done(ev) {
+            if (ev.target !== el) return;
+            el.classList.remove('reveal', 'in');
+            el.removeEventListener('animationend', done);
+          });
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach(function (el) { io.observe(el); });
     })();
   </script>
 </body>
