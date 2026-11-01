@@ -9,7 +9,7 @@
   <!-- Link preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Morn Sokunlyza, Junior Frontend &amp; Mobile Developer">
-  <meta property="og:description" content="Junior frontend and mobile developer with UX/UI design skills. See my DigiCamFarm app design and code.">
+  <meta property="og:description" content="Junior Frontend and Mobile Developer with UX/UI design skills. See my DigiCamFarm app design and code.">
   <meta property="og:image" content="https://liz1305.github.io/images/home.png">
   <meta property="og:url" content="https://liz1305.github.io">
 
@@ -338,7 +338,7 @@
 
     <div class="wrap hero">
       <div>
-        <p class="badge">Open to junior frontend and mobile developer roles</p>
+        <p class="badge">Open to Junior Frontend and Mobile Developer roles</p>
         <h1>Morn Sokunlyza</h1>
         <p class="role"><span class="sr">Junior Frontend and Mobile Developer with UX/UI design skills</span><span id="typed" aria-hidden="true">Junior Developer</span><span class="caret" aria-hidden="true"></span></p>
         <p class="lede">I'm a Software Development student with a UX/UI design background. I design interfaces in Figma and build them with HTML, CSS, JavaScript, React Native and Kotlin.</p>
@@ -710,16 +710,15 @@
       });
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
           var el = e.target;
-          io.unobserve(el);
-          el.classList.add('in');
-          if (el.matches('.skills > div')) el.classList.add('pop');
-          el.addEventListener('animationend', function done(ev) {
-            if (ev.target !== el) return;
-            el.classList.remove('reveal', 'in');
-            el.removeEventListener('animationend', done);
-          });
+          var isSkills = el.matches('.skills > div');
+          if (e.isIntersecting) {
+            el.classList.add('in');
+            if (isSkills) el.classList.add('pop');
+          } else {
+            el.classList.remove('in');
+            if (isSkills) el.classList.remove('pop');
+          }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       targets.forEach(function (el) { io.observe(el); });
